@@ -1,0 +1,141 @@
+jquery.leadbox.js
+A simple modal plugin for lead capture purposes.
+Quick Info
+
+The plugin loads a modal box with user-defined content after a specified amount of time. Then, it sets a cookie to prevent the box from showing up on other, and future, page requests.
+
+It is customizable and easy to setup, you can set the content from either an element in your HTML document or a remote location. Among other options, you can also set callbacks for actions taken (form submitted or link clicked), leadbox done loading, and closed by the user.
+How to use
+
+    Include jquery and jquery.leadbox-0.1.js into your HTML document
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+    <script type="text/javascript" src="/leadbox/jquery.leadbox-0.1.js"></script>
+
+    Either include the jquery.leadbox.css file provided with the plugin or copy its content into your own stylesheet.
+
+    <link type="text/css" rel="stylesheet" href="/leadbox/jquery.leadbox.css" />
+
+    Create an element to use as leadbox's content
+
+    <div id="myLeadBox">
+        Enter your content here..
+    </div>
+
+    Call jquery.leadbox passing your custom params, example:
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+       $('#myLeadBox').leadbox({
+          closeButton: '<img src="images/close_btt.png" alt="" />',
+          cookieTime: 7,
+          interval: 30000,
+          width: 500,
+          height: 350
+       });
+    });
+
+    </script>
+
+    That's it
+
+Params
+
+    interval: Time to wait before showing the leadbox, default: 20000 (20 seconds)
+    cookie: Sets the cookie name, default: 'leadBox'
+    cookie_time: Sets the cookie duration (in days), default: 7
+    cookie_path: Sets the cookie path, default: /
+    width: Sets the element's width, default: 500
+    height: Sets the element's height, default: 220
+    closeOnExternalClick: Closes the leadbox whenever the user clicks outside its boundaries, default: false
+    closeButton: Displays a close button/link and sets its label - Example
+    remote: Loads and replaces your element's content with the one from the remote server (in an iframe)
+    actionClass: Defines the class name for the 'onAction' callback
+    onAction: Callback - fired on anchors and forms elements that contains the class defined in actionClass (on click and submit events, respectively)
+    onLoad: Callback - leadbox done loading
+    onClose: Callback - leadbox closed by user
+
+More Examples
+
+    Remote Content
+
+    <div id="myLeadBox"></div>
+
+    <!-- ... -->
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+       $('#myLeadBox').leadbox({
+          closeButton: 'X',
+          cookieTime: 30,
+          interval: 10000,
+          width: 800,
+          height: 600,
+          remote: 'http://4minuteslate.com'
+       });
+    });
+
+    </script>
+
+    Callback
+
+    <div id="myLeadBox">
+        <p>Enter your content here..</p>
+
+        <!-- a form -->
+        <form method="post" action"/some/action/" class="leadAction">
+            <input type="text" size="30" name="email_address" id="email_address" />
+            <input type="submit" value="Subscribe!" />
+        </form>
+
+        <!-- or an anchor -->
+        <a href="http://mywebsite.com/subscribe/?a=b&c=d" class="leadAction">Subscribe!</a>
+    </div>
+
+    <!-- ... -->
+
+    <script type="text/javascript">
+
+    var campaign_id = '...', usr_id = '...';
+
+    $(document).ready(function() {
+       $('#myLeadBox').leadbox({
+          closeButton: '<img src="images/close_btt.png" alt="" />',
+          cookieTime: 7,
+          interval: 15000,
+          width: 500,
+          height: 300,
+          actionClass: 'leadAction',
+          onAction: function() {
+              $.post('campaignStats.php', { action: 'success', cid: campaign_id, usr: usr_id });
+          }
+          onClose: function() {
+              $.post('campaignStats.php', { action: 'canceled', cid: campaign_id, usr: usr_id });
+          }
+       });
+    });
+
+    </script>
+
+Tips & Observations
+
+    When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container, edit with care).
+    Whatever is passed in the 'closeButton' param gets wrapped in a div with class 'leadbox_close' and an anchor. This is a default behavior to place the close button / text on the top right of the leadbox. To edit its position and other css rules, look for '#leadbox_container .leadbox_close' in the css file.
+    If you omit the 'closeButton' param, a close button will not be placed by the plugin. You should then insert an element responsible for closing the leadbox, to do so its action must call '$.leadbox.close();', example:
+
+    <a href="javascript:$.leadbox.close();">No, Thank you!</a>
+
+    Once the leadbox is closed by the user, it will no longer be visible - until your cookie expires.
+
+About
+
+Developed by Rodrigo Z. Arthuso (arthuso.com).
+Tested on IE7+, FF 4, Chrome 9, Opera 11 and Safari 5
+For help or bug reports, visit the author's website: http://blog.arthuso.com
+Dual licensed under MIT and GPL.
+Changelog
+
+    0.1 (04/25/2011) - First version.
+
