@@ -1,0 +1,23 @@
+/* jquery.leadbox.js style */
+#leadbox_container {
+	display: none;
+	position: fixed;
+	z-index: 998;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: transparent url(images/leadbox_bg.png) repeat top left;
+}
+
+#leadbox_container .leadbox_close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+	cursor: pointer;
+}
+
+#leadbox_container .leadbox_close img {
+	border: 0;
+}

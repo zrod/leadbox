@@ -1,0 +1,76 @@
+/* Sample page's style */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f5f5f5;
+}
+
+#main {
+	width: 920px;
+	margin: 0 auto;
+	padding: 10px 20px;
+	background-color: #fff;
+}
+
+#main h1 {
+	margin: 0;
+}
+
+#main pre {
+	padding: 0;
+	margin: 10px 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	width: 800px;
+	background-color: #f5f5f5;
+}
+
+#main pre code {
+	margin: 0 0 0 10px;
+	padding: 15px;
+	display: block;
+}
+
+#main ul li {
+	list-style: none;
+	padding: 5px 0;
+}
+
+#main ul.styled li {
+	list-style-type: square;
+}
+
+#main ul li a {
+	color: #4183C4;
+	text-decoration: underline;
+	font-size: .8em;
+}
+
+#main ul li a:hover {
+	text-decoration: none;
+}
+
+#main ul#params li pre {
+	display: none;
+}
+
+/* Demos */
+#myLeadBox {
+	display: none;
+	background-color: #F6F6F6;
+	border: 1px solid #999;
+	position: absolute;
+	z-index: 999;
+}
+
+.myLeadBox_title {
+	padding: 10px;
+	background-color: #C0CBD6;
+	color: #405F84;
+	font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;
+	text-shadow: 0 1px 0 #DDD;
+	text-transform: capitalize;
+}
+.myLeadBox_text {
+	padding: 10px;
+	font-size: 12px;
+}
