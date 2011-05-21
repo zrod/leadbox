@@ -1,0 +1,29 @@
+h1. jquery.leadbox.js
+
+A simple modal plugin for lead capture purposes.
+
+h2. Quick Info
+
+The plugin loads a modal box with user-defined content after a specified amount of time. Then, it sets a cookie to prevent the box from showing up on other, and future, page requests.
+It is customizable and easy to setup, you can set the content from either an element in your HTML document or a remote location.
+Among other options, you can also set callbacks for actions taken (form submitted or link clicked), leadbox done loading, and closed by the user.
+
+h2. Tips & Observations
+
+* When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container, edit with care).
+* Whatever is passed in the 'closeButton' param gets wrapped in a div with class 'leadbox_close' and an anchor. This is a default behavior to place the close button / text on the top right of the leadbox. To edit its position and other css rules, look for '#leadbox_container .leadbox_close' in the css file.
+* If you omit the 'closeButton' param, a close button will not be placed by the plugin. You should then insert an element responsible for closing the leadbox, to do so its action must call '$.leadbox.close();'.
+* Once the leadbox is closed by the user, it will no longer be visible - until your cookie expires.
+
+h2. About
+
+Developed by Rodrigo Z. Arthuso (arthuso.com).
+
+Tested on IE7+, FF 4, Chrome 9, Opera 11 and Safari 5
+
+For help or bug reports, visit the author's website: "http://blog.arthuso.com":http://blog.arthuso.com
+Dual licensed under MIT and GPL.
+
+h2. Changelog
+
+* 0.1 (04/25/2011) - First version.
