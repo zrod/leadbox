@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jquery.leadbox.js - v0.1 - Demo - Remote Content</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.leadbox-0.1.js"></script>
+	<link type="text/css" rel="stylesheet" href="../demo.css" />
+	<link type="text/css" rel="stylesheet" href="../jquery.leadbox.css" />
+</head>
+
+<body>
+
+	<div id="main">
+		<h1>jquery.leadbox.js</h1>
+		<h2>A simple modal plugin for lead capture purposes.</h2>
+		
+		<h3>Remote Content</h3>
+		<pre><code>$(&#39;#myLeadBox&#39;).leadbox({<br />&nbsp; &nbsp; closeButton: &#39;&lt;img src=&quot;../images/close_btt.png&quot; alt=&quot;Close&quot; /&gt;&#39;,<br />&nbsp; &nbsp; cookie: &#39;leadBoxRemote&#39;,<br />&nbsp; &nbsp; cookieTime: 7,<br />&nbsp; &nbsp; interval: 1000,<br />&nbsp; &nbsp; width: 800,<br />&nbsp; &nbsp; height: 600,<br />&nbsp; &nbsp; closeOnExternalClick: false,<br />&nbsp; &nbsp; remote: &#39;http://4minuteslate.com&#39;<br />});</code></pre>
+		
+		<h3>More</h3>
+		<a href="../jquery.leadbox.html">Documentation</a> | <a href="callbacks.html">Callbacks demo</a>
+		
+		<p><a href="http://blog.arthuso.com">blog.arthuso.com</a> | <a href="https://github.com/zrod/leadbox">github.com/zrod/leadbox</a></p>
+	</div>
+	
+	<!-- myLeadBox / jquery.leadbox demo -->
+	<div id="myLeadBox">
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myLeadBox').leadbox({
+				closeButton: '<img src="../images/close_btt.png" alt="Close" />',
+				cookie: 'leadBoxRemote',
+				cookieTime: 1,
+				interval: 1000,
+				width: 800,
+				height: 600,
+				closeOnExternalClick: false,
+				remote: 'http://4minuteslate.com'
+			});
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jquery.leadbox.js - v0.1 - Demo - Callbacks</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.leadbox-0.1.js"></script>
+	<link type="text/css" rel="stylesheet" href="../demo.css" />
+	<link type="text/css" rel="stylesheet" href="../jquery.leadbox.css" />
+</head>
+
+<body>
+
+	<div id="main">
+		<h1>jquery.leadbox.js</h1>
+		<h2>A simple modal plugin for lead capture purposes.</h2>
+		
+		<h3>Callbacks</h3>
+		<pre><code>$(&#39;#myLeadBox&#39;).leadbox({<br />&nbsp; &nbsp; cookie: &#39;leadBoxonAction&#39;,<br />&nbsp; &nbsp; cookieTime: 7,<br />&nbsp; &nbsp; height: 260,<br />&nbsp; &nbsp; interval: 2000,<br />&nbsp; &nbsp; closeOnExternalClick: true,<br />&nbsp; &nbsp; actionClass: &#39;leadAction&#39;,<br />&nbsp; &nbsp; onAction: function() {<br />&nbsp; &nbsp; &nbsp; &nbsp; $(&#39;#leadbox_log&#39;).append(&#39;&lt;p&gt;Action taken.&lt;/p&gt;&#39;);<br />&nbsp; &nbsp; },<br />&nbsp; &nbsp; onLoad: function() {<br />&nbsp; &nbsp; &nbsp; &nbsp; $(&#39;#leadbox_log&#39;).append(&#39;&lt;p&gt;Leadbox loaded.&lt;/p&gt;&#39;);<br />&nbsp; &nbsp; },<br />&nbsp; &nbsp; onClose: function() {<br />&nbsp; &nbsp; &nbsp; &nbsp; $(&#39;#leadbox_log&#39;).append(&#39;&lt;p&gt;Leadbox closed.&lt;p&gt;&#39;);<br />&nbsp; &nbsp; }<br />});</code></pre>
+		
+		<pre><code id="leadbox_log" style="font-size:.9em; color: #FF0000;"></code></pre>
+		
+		<h3>More</h3>
+		<a href="../jquery.leadbox.html">Documentation</a> | <a href="remote.html">Remote content demo</a>
+		
+		<p><a href="http://blog.arthuso.com">blog.arthuso.com</a> | <a href="https://github.com/zrod/leadbox">github.com/zrod/leadbox</a></p>
+	</div>
+	
+	<!-- myLeadBox / jquery.leadbox demo -->
+	<div id="myLeadBox">
+		<div class="myLeadBox_title">
+			Subscribe now!
+		</div>
+		<div class="myLeadBox_text">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis ipsum. Aliquam id enim enim, eget luctus ligula. Duis in mi eu leo porta iaculis ac consectetur neque. Integer dapibus mollis eros nec luctus. Aenean lobortis enim sed nisl egestas facilisis.
+			</p>
+			<form method="get" action="http://4minuteslate.com" class="leadAction">
+				<ul>
+					<li>Duis sem neque, egestas a posuere et, laoreet scelerisque arcu.</li>
+					<li>Nulla facilisi.</li>
+				</ul>
+				<p style="text-align: center;">
+					<input id="email_address" name="email_address" type="text" size="30" />
+					<input type="submit" value="Subscribe!" />
+				</p>
+				Aliquam id enim luctus ligula? <a href="#" class="leadAction">Sed sed felis ipsum.</a>
+			</form>
+			<p style="text-align: center;"><a href="javascript:$.leadbox.close();">No, Thank you!</a></p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myLeadBox').leadbox({
+				cookie: 'leadBoxCallbacks',
+				cookieTime: 1,
+				height: 260,
+				interval: 5000,
+				closeOnExternalClick: true,
+				actionClass: 'leadAction',
+				onAction: function() {
+					$('#leadbox_log').append('<p>Action taken.</p>');
+				},
+				onLoad: function() {
+					$('#leadbox_log').append('<p>Leadbox loaded.</p>');
+				},
+				onClose: function() {
+					$('#leadbox_log').append('<p>Leadbox closed.<p>');
+				}
+			});
+			
+			$('form.leadAction').submit(function(){
+				var email_field = $('#email_address');
+				
+				if (email_field.val() == '') {
+					email_field.css('border', '1px solid #FF0000');
+					return false;
+				}
+				
+				return true;
+			});
+		});
+	</script>
+
+</body>
+</html>

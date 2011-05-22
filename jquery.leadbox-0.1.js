@@ -50,7 +50,7 @@
 					$(el_c).fadeIn();
 					$(el).css({left: pos.left, top: pos.top}).fadeIn('slow').click(function(e){ e.stopPropagation(); });
 					
-					// Set a cookie so it won't show up on every single request
+					// Set a cookie so that it won't show up on every single request
 					$.leadbox.setCookie($.leadbox.settings.cookie, '1', $.leadbox.settings.cookie_time, $.leadbox.settings.cookie_path);
 					
 					// Run callback

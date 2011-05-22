@@ -88,7 +88,7 @@
 				<b>actionClass</b>: Defines the class name for the 'onAction' callback
 			</li>
 			<li>
-				<b>onAction</b>: Callback - fired on anchors and forms elements that contains the class defined in actionClass (on click and submit events, respectively)
+				<b>onAction</b>: Callback - fired on anchor and form elements that contains the class defined in actionClass (on click and submit events, respectively)
 			</li>
 			<li>
 				<b>onLoad</b>: Callback - leadbox done loading
@@ -101,12 +101,12 @@
 		<h3>More Examples</h3>
 		<ul>
 			<li>
-				<b>Remote Content</b>
+				<b>Remote Content</b> - <a href="demos/remote.html">Demo</a>
 				<br />
 				<pre><code>&lt;div id=&quot;myLeadBox&quot;&gt;&lt;/div&gt;&#10;&#10;&lt;!-- ... --&gt;&#10;&#10;&lt;script type=&quot;text/javascript&quot;&gt;&#10;&#10;$(document).ready(function() {&#10;   $(&#39;#myLeadBox&#39;).leadbox({&#10;      closeButton: &#39;X&#39;,&#10;      cookieTime: 30,&#10;      interval: 10000,&#10;      width: 800,&#10;      height: 600,&#10;      remote: &#39;http://4minuteslate.com&#39;&#10;   });&#10;});&#10;&#10;&lt;/script&gt;</code></pre>
 			</li>
 			<li>
-				<b>Callback</b>
+				<b>Callback</b> - <a href="demos/callbacks.html">Demo</a>
 				<br />
 				<pre><code>&lt;div id=&quot;myLeadBox&quot;&gt;<br />&nbsp; &nbsp; &lt;p&gt;Enter your content here..&lt;/p&gt;<br /><br />&nbsp; &nbsp; &lt;!-- a form --&gt;<br />&nbsp; &nbsp; &lt;form method=&quot;post&quot; action&quot;/some/action/&quot; class=&quot;leadAction&quot;&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; size=&quot;30&quot; name=&quot;email_address&quot; id=&quot;email_address&quot; /&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;submit&quot; value=&quot;Subscribe!&quot; /&gt;<br />&nbsp; &nbsp; &lt;/form&gt;<br /><br />&nbsp; &nbsp; &lt;!-- or an anchor --&gt;<br />&nbsp; &nbsp; &lt;a href=&quot;http://mywebsite.com/subscribe/?a=b&amp;c=d&quot; class=&quot;leadAction&quot;&gt;Subscribe!&lt;/a&gt;<br />&lt;/div&gt;<br /><br />&lt;!-- ... --&gt;<br /><br />&lt;script type=&quot;text/javascript&quot;&gt;<br /><br />var campaign_id = &#39;...&#39;, usr_id = &#39;...&#39;;<br /><br />$(document).ready(function() {<br />&nbsp; &nbsp;$(&#39;#myLeadBox&#39;).leadbox({<br />&nbsp; &nbsp; &nbsp; closeButton: &#39;&lt;img src=&quot;images/close_btt.png&quot; alt=&quot;&quot; /&gt;&#39;,<br />&nbsp; &nbsp; &nbsp; cookieTime: 7,<br />&nbsp; &nbsp; &nbsp; interval: 15000,<br />&nbsp; &nbsp; &nbsp; width: 500,<br />&nbsp; &nbsp; &nbsp; height: 300,<br />&nbsp; &nbsp; &nbsp; actionClass: &#39;leadAction&#39;,<br />&nbsp; &nbsp; &nbsp; onAction: function() {<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $.post(&#39;campaignStats.php&#39;, { action: &#39;success&#39;, cid: campaign_id, usr: usr_id });<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; &nbsp; onClose: function() {<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $.post(&#39;campaignStats.php&#39;, { action: &#39;canceled&#39;, cid: campaign_id, usr: usr_id });<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp;});<br />});<br /><br />&lt;/script&gt;</code></pre>
 			</li>
@@ -132,11 +132,11 @@
 		
 		<h3>About</h3>
 		<p>
-			Developed by Rodrigo Z. Arthuso (arthuso.com).
+			Developed by Rodrigo Z. Arthuso (<a href="http://arthuso.com">arthuso.com</a>).
 			<br />
-			Tested on IE7+, FF 4, Chrome 9, Opera 11 and Safari 5
+			Tested on IE7+, FF 4, Chrome 9+, Opera 11 and Safari 5.
 			<br />
-			For help or bug reports, visit the author's website: <a href="http://blog.arthuso.com">http://blog.arthuso.com</a>
+			For help or bug reports, please visit: <a href="http://blog.arthuso.com">blog.arthuso.com</a> / <a href="https://github.com/zrod/leadbox">github.com/zrod/leadbox</a>
 			<br />
 			Dual licensed under MIT and GPL.
 		</p>
@@ -168,7 +168,6 @@
 					<input type="submit" value="Subscribe!" />
 				</p>
 			</form>
-			<a href="javascript:$.leadbox.close();" class="leadAction">No, Thank you!</a>
 		</div>
 	</div>
 
