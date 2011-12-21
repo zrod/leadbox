@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>jquery.leadbox.js - Documentation - v0.1</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery.leadbox-0.1.js"></script>
+	<script type="text/javascript" src="jquery.leadbox.js"></script>
 	<link type="text/css" rel="stylesheet" href="demo.css" />
 	<link type="text/css" rel="stylesheet" href="jquery.leadbox.css" />
 	
@@ -25,10 +25,10 @@
 		
 		<h3>Quick Info</h3>
 		<p>
-			The plugin loads a modal box with user-defined content after a specified amount of time. Then, it sets a cookie to prevent the box from showing up on other, and future, page requests.
+            The plugin loads a modal box with user-defined content after a specified amount of time. Then, a cookie is set to prevent the box from showing up on future page requests.
 		</p>
 		<p>
-			It is customizable and easy to setup, you can set the content from either an element in your HTML document or a remote location. Among other options, you can also set callbacks for actions taken (form submitted or link clicked), leadbox done loading, and closed by the user.
+            It is customizable and easy to setup, you can set its the content from either an element in your HTML document or a remote location. Among other options, you can also set callbacks for actions taken (form submitted or link clicked), leadbox done loading, and closed by the user.
 		</p>
 		
 		<h3>How to use</h3>
@@ -115,18 +115,18 @@
 		<h3>Tips &amp; Observations</h3>
 		<ul class="styled">
 			<li>
-				When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container, edit with care).
+                When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container).
 			</li>
 			<li>
-				Whatever is passed in the 'closeButton' param gets wrapped in a div with class 'leadbox_close' and an anchor. This is a default behavior to place the close button / text on the top right of the leadbox.
-				To edit its position and other css rules, look for '#leadbox_container .leadbox_close' in the css file.
+                Whatever is passed in the 'closeButton' param gets wrapped in a div with class 'leadbox_close' and an anchor. This is a default behavior to place the close button / text on the top right of the leadbox.
+                To edit its position and other css rules, look for '#leadbox_container .leadbox_close' in the css file.
 			</li>
 			<li>
 				If you omit the 'closeButton' param, a close button will not be placed by the plugin. You should then insert an element responsible for closing the leadbox, to do so its action must call '$.leadbox.close();', example:
 				<pre><code>&lt;a href=&quot;javascript:$.leadbox.close();&quot;&gt;No, Thank you!&lt;/a&gt;</code></pre>
 			</li>
 			<li>
-				Once the leadbox is closed by the user, it will no longer be visible - until your cookie expires.
+				Once the leadbox is closed by the user, it will no longer be visible - until the cookie expires.
 			</li>
 		</ul>
 		
@@ -143,6 +143,9 @@
 		
 		<h3>Changelog</h3>
 		<ul>
+            <li>
+                <b>0.2 (12/15/2011)</b> - Code cleanup, dropped support for IE6.
+            </li>
 			<li>
 				<b>0.1 (04/25/2011)</b> - First version.
 			</li>

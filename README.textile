@@ -4,18 +4,18 @@ A simple modal plugin for lead capture purposes.
 
 h2. Quick Info
 
-The plugin loads a modal box with user-defined content after a specified amount of time. Then, it sets a cookie to prevent the box from showing up on other, and future, page requests.
+The plugin loads a modal box with user-defined content after a specified amount of time. Then, a cookie is set to prevent the box from showing up on future page requests.
 
-It is customizable and easy to setup, you can set the content from either an element in your HTML document or a remote location.
+It is customizable and easy to setup, you can set its the content from either an element in your HTML document or a remote location.
 
 Among other options, you can also set callbacks for actions taken (form submitted or link clicked), leadbox done loading, and closed by the user.
 
 h2. Tips & Observations
 
-* When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container, edit with care).
+* When calling $.leadbox, your element gets wrapped in a div with id 'leadbox_container'. This div is necessary for the plugin functionality. It also provides the opaque background, which can be changed in the css file (#leadbox_container).
 * Whatever is passed in the 'closeButton' param gets wrapped in a div with class 'leadbox_close' and an anchor. This is a default behavior to place the close button / text on the top right of the leadbox. To edit its position and other css rules, look for '#leadbox_container .leadbox_close' in the css file.
 * If you omit the 'closeButton' param, a close button will not be placed by the plugin. You should then insert an element responsible for closing the leadbox, to do so its action must call '$.leadbox.close();'.
-* Once the leadbox is closed by the user, it will no longer be visible - until your cookie expires.
+* Once the leadbox is closed by the user, it will no longer be visible - until the cookie expires.
 
 h2. About
 
@@ -29,4 +29,5 @@ Dual licensed under MIT and GPL.
 
 h2. Changelog
 
+* 0.2 (12/15/2011) - Code cleanup, dropped support for IE6.
 * 0.1 (04/25/2011) - First version.

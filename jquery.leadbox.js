@@ -1,13 +1,13 @@
 /*
  * LeadBox for jQuery (v1.4+)
  * A simple modal plugin for lead capture purposes.
- * For more details, please visit: http://blog.arthuso.com
+ * For more details, please visit: https://github.com/zrod/leadbox
  * 
  * Author: Rodrigo Z. Arthuso | arthuso.com
- * 
- * Version: 0.1 (04/25/2011)
- * - First version
- * 
+ *
+ * Version 0.2 (12/15/2011)
+ * - Code cleanup, dropped support for IE6.
+ *
  * Dual licensed under MIT and GPL.
  */
 
@@ -20,7 +20,11 @@
 				$.extend($.leadbox.settings, options);
 			}
 			
-			var el_c = $('#leadbox_container'), el = this;
+			var actionClassElements,
+                el_c = $('#leadbox_container'),
+                el = this,
+                pos,
+                t;
 			
 			if (el_c.length != 1 && $(el).length == 1 && $.leadbox.readCookie($.leadbox.settings.cookie) === false) {
 				$(el).css({'width': $.leadbox.settings.width, 'height': $.leadbox.settings.height}).wrap($('<div id="leadbox_container"></div>'));
@@ -32,19 +36,13 @@
 				}
 				
 				// Prepend close button
-				if ($.leadbox.settings.closeButton != '') {
+				if ($.leadbox.settings.closeButton !== '') {
 					$(el).prepend('<div class="leadbox_close"><a href="javascript:$.leadbox.close();">' + $.leadbox.settings.closeButton + '</a></div>');
 				}
-				
-				// IE6 Fix
-				if ($.browser.msie && $.browser.version == '6.0') {
-					$(document.body).css({width: '100%', height: '100%'});
-					el_c.css('position', 'absolute');
-				}
 
-				var t = window.setTimeout(function() {
+				t = window.setTimeout(function() {
 					// Retrieve element's position
-					var pos = $.leadbox.calcPosition(el);
+					pos = $.leadbox.calcPosition(el);
 					
 					// Center and display element
 					$(el_c).fadeIn();
@@ -59,14 +57,14 @@
 				
 				// Center element after a resize event
 				$(window).resize(function() {
-					var pos = $.leadbox.calcPosition(el);
+					pos = $.leadbox.calcPosition(el);
 					$(el).css({left: pos.left, top: pos.top});
 				});
 				
-				// Run callback after an action is taken (forms and anchors)
-				if ($.leadbox.settings.actionClass != '' && typeof($.leadbox.settings.onAction) === 'function') {
+				// Actions callback
+				if ($.leadbox.settings.actionClass !== '' && typeof($.leadbox.settings.onAction) === 'function') {
 					// Scan for elements containing the class defined in the settings
-					var actionClassElements = $('#leadbox_container .' + $.leadbox.settings.actionClass);
+					actionClassElements = $('#leadbox_container .' + $.leadbox.settings.actionClass);
 					if (actionClassElements.length > 0) {
 						$.each(actionClassElements, function(k, v) {
 							switch (v.tagName.toLowerCase()) {
@@ -114,44 +112,40 @@
 		},
 			
 		calcPosition: function(el) {
-			var winWidth = $(window).width(), winHeight = $(window).height();
-			var elWidth = $(el).outerWidth(), elHeight = $(el).outerHeight();
-			var pos_left = Math.abs((winWidth / 2) - (elWidth / 2));
-			var pos_top = Math.abs((winHeight / 2) - (elHeight / 2));
+			var winWidth = $(window).width(),
+                winHeight = $(window).height(),
+			    elWidth = $(el).outerWidth(),
+                elHeight = $(el).outerHeight(),
+			    pos_left = Math.abs((winWidth / 2) - (elWidth / 2)),
+			    pos_top = Math.abs((winHeight / 2) - (elHeight / 2));
 			
-			return new Object({left: pos_left, top: pos_top});
+			return {left: pos_left, top: pos_top};
 		},
 		
 		readCookie: function(n) {
 			if (document.cookie.length > 0) {
-				cstrt = document.cookie.indexOf(n + '=');
+				var cstrt = document.cookie.indexOf(n + '='),
+                    cend;
 				if (cstrt != -1) {
 					cstrt = cstrt + n.length + 1;
 					cend = document.cookie.indexOf(';', cstrt);
 					if (cend == -1) cend = document.cookie.length;
 					return unescape(document.cookie.substring(cstrt, cend));
-				} else {
-					return false;
 				}
-			} else {
-				return false;
 			}
+            
+			return false;
 		},
 	
 		setCookie: function(n, v, ed, path) {
 			var vdate = new Date();
 			vdate.setDate(vdate.getDate() + ed);
-			document.cookie = n + '=' + v + ((ed == '' || ed == 0) ? '' : ';expires=' + vdate.toUTCString()) + ';path=' + path;
+			document.cookie = n + '=' + v + ((ed === '' || ed === 0) ? '' : ';expires=' + vdate.toUTCString()) + ';path=' + path;
 		},
 	
 		close: function () {
-			// IE6 Fix - unsets the width and height value of 100%
-			if ($.browser.msie && $.browser.version == '6.0') {
-				$(document.body).css({width: "auto", height: "auto"});
-			}
-			
-			var el = $('#leadbox_container');
-			var child = el.find(':first-child').attr('id');
+            var el = $('#leadbox_container'),
+                child = el.find(':first-child').attr('id');
 			
 			el.hide();
 			$('body').not(child).unbind('click');
